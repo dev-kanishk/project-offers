@@ -6,8 +6,7 @@ class UserProfileInfo(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.PROTECT)
 
-    portfolio_site = models.URLField(blank=True)
-    profile_pic = models.ImageField(upload_to='profile_pics', blank = True)
+    phone_number = models.CharField( max_length=12,blank=False,default="") # validators should be a list
 
     def __str__(self):
         return self.user.username

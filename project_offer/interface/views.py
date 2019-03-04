@@ -37,9 +37,9 @@ def register(request):
 
             profile = profile_form.save(commit=False)
             profile.user = user
-
-            if 'profile_pic' in request.FILES:
-                profile.profile_pic = request.FILES['profile_pic']
+            #
+            # if 'profile_pic' in request.FILES:
+            #     profile.profile_pic = request.FILES['profile_pic']
             profile.save()
 
             registered = True
