@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block body_block %}
+
+<div class="jumbotron">
+  {% if user.is_authenticated %}
+   <h1>Welcome to Special offers</h1>
+   {% else %}
+   <h1> Please login first</h1>
+    {% endif %}
+   </div>
+
+{% endblock %}
