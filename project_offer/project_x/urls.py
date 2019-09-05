@@ -16,12 +16,30 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from interface import views
+from django.conf import settings
+from django.conf.urls import url
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="adi"),
-    path("",views.index, name="index"),
+    path("",views.Index.as_view(), name="index"),
     path("interface/",include("interface.urls")),
+    path("shop/",views.shop, name="shop"),
     path("logout/",views.user_logout, name="logout"),
     path("special", views.special,name="special"),
+    path("<int:pk>/", views.OfferDetailView.as_view(), name=" OfferDetailView"),
+    path("categories/<int:pk>",views.Filters.as_view(), name="Filters"),
+    path("upload_offer/",views.Upload_Offer, name="upload_offer"),
+    path('viewoffer/',views.viewoffer, name="viewoffer"),
+    url(r"delete/(?P<pk>\d+)/$",views.DeletePost.as_view(),name="delete"),
+    url(r"edit/(?P<pk>\d+)/$",views.EditPost.as_view(),name="edit"),
 
-]
+    url(r'^', include('django.contrib.auth.urls')),
+    path('shop_registration/',views.shop_registration,name='shopregistration'),
+    path("<slug:slug>/",views.Shop_profile,name="shopprofile"),
+    path("basic_app/user_login/",views.user_login),
+    path("<int:pk>/comment/",views.comments, name="comments"),
+    path("<int:pk>/delete_comment/",views.delete_comment, name="comment_delete"),
+    path("<int:pk>/like/",views.like, name="like"),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,438 @@
+<!DOCTYPE html>{% extends "base.html" %}
+{% load static %}
+
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'fit.css' %}">
+<style>
+    *{
+        box-sizing:border-box;
+    }
+
+    input{
+        border:none;
+        background:none;
+    }
+    input:hover{
+         border:1px solid grey;
+        background:none;
+    }
+    .bd{
+        background:white;
+        color:black;
+        text-decoration:none;
+    }
+.images {
+  display: flex;
+}
+.images .img,
+.images .pic {
+  flex-basis: 31%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.images .img {
+  width: 112px;
+  height: 93px;
+  background-size: cover;
+  margin-right: 10px;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.images .img:nth-child(3n) {
+  margin-right: 0;
+}
+.images .img span {
+  display: none;
+  text-transform: capitalize;
+  z-index: 2;
+}
+.images .img::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  transition: opacity .1s ease-in;
+  border-radius: 4px;
+  opacity: 0;
+  position: absolute;
+}
+.images .img:hover::after {
+  display: block;
+  background-color: #000;
+  opacity: .5;
+}
+.images .img:hover span {
+  display: block;
+  color: #fff;
+}
+.images .pic {
+  background-color: #F5F7FA;
+  align-self: center;
+  text-align: center;
+  padding: 40px 0;
+  text-transform: uppercase;
+  color: #848EA1;
+  font-size: 12px;
+  cursor: pointer;
+}
+.offers-item{
+    transform-origin: 50% 60%;
+    overflow: hidden;
+}
+.offers-item img{
+    border-radius:4px;
+}
+.offers-item:hover{
+    border:1px solid grey;
+    border-radius:8px;
+    box-shadow:0 5px 5px grey;
+}
+.offers-item:hover img{
+     transform:scale(1.1);
+   transition: transform .5s ease-in-out;
+}
+.offers-button{
+    background-color:white;
+    color:black;
+    border:1px solid black;
+    opacity:0.67;
+}
+.offers-button:hover,.offers-button:focus{
+    background-color:black;
+    color:white;
+}
+.offers-item{
+    margin-top:0.5rem;
+    margin-left:2em;
+    margin-bottom:1rem;
+
+}
+.modal-button{
+    margin-bottom:0.5rem;
+}
+.modal-btn{
+    border:1px solid #262626;
+    border-radius:4px;
+    color:#262626;
+    background-color:white;
+}
+.modal-btn:hover{
+    color:white;
+    background-color:#262626;
+}
+form div{
+    display:flex;
+    flex-direction:column;
+    justify-content:start;
+}
+.modal-body label{
+    margin-top:0.1rem;
+    margin-bottom:0.2rem;
+    color:#262626;
+    font-size:14px;
+}
+.modal-body input{
+    width:12rem;
+    border:0.6px solid lightgrey;
+    border-radius:3px;
+}
+    @media screen and (max-width:400px){
+   .container h1{
+       font-size:25px;
+       font-weight:bold;
+       opacity:0.85;
+   }
+   .container p{
+       font-size:19px;
+   }
+   .container h2{
+       font-size:16px;
+   }
+   .container strong{
+       font-size:16px;
+   }
+    .images .img,
+  .images .pic {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+
+    }
+
+
+
+</style>
+<div class="bd">
+
+<div class="d-flex align-items-center py-3 cover " style="">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mt-5">
+          <h1 class="display-4 text-center">&nbsp;{{shop.shop_name}}</h1>
+          <p class="lead text-center">{{shop.tag_line}}</p>
+          <button type="button" class="btn btn-primary" style="font-size:8px;float:right;transform:translateY(40px);">
+          	Follow
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Intro section -->
+  <div class="py-3 section-fade-in">
+    <div class="container p-4 mt-4">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="mb-3 text-center">About the shop</h1>
+          <div class="content-about">{{shop.shop_discription}}
+
+          <!-- =====
+            modal
+          ===== -->
+          <div class="modal-button" style="float:right;">
+               <button type="button" class="modal-btn btn mb-2"  data-toggle="modal" data-target="#exampleModalCenter" style="font-size:8px;">
+          	Edit
+          </button>
+          <!-- modal for changing of address -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="myModal1">
+			  <div class="modal-dialog modal-dialog-centered" role="document" id="modal1" >
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Details</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			        	<div>
+			        	<label>Update details about your shop:</label>
+                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			        	</div>
+
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+    			</div>
+			  </div>
+			</div>
+          </div>
+
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!-- offers -->
+  <div class="container" id="Offers">
+      <div class="row">
+        <div class="col-12">
+          <h1 style="margin-top:-2rem;">OFFERS</h1>
+        </div>
+
+      </div>
+      <hr>
+
+<div class="container">
+
+      <div class="col-md-2 col-6 col-lg-2 offers-item border " style="height:19rem;">
+        <img class="offers-ima center-block img-fluid my-3 shadowed" src="" alt="offer" width="300" style=" height:9rem;">
+
+          <h4 class="mb-0 text-center">fvjvj</h4>
+          <p class="mb-0 text-center">bjbj</p>
+          <div class="text-center">
+          <a href="#" class="btn stretched-link offers-button mt-1">offer details</a>
+          </div>
+      </div>
+      <div class="col-md-2 col-6 col-lg-2 offers-item border " style="height:19rem;">
+        <img class="offers-ima center-block img-fluid my-3 shadowed" src="" alt="offer" width="300" style=" height:9rem;">
+
+          <h4 class="mb-0 text-center">fvjvj</h4>
+          <p class="mb-0 text-center">bjbj</p>
+          <div class="text-center">
+          <a href="#" class="btn stretched-link offers-button mt-1">offer details</a>
+          </div>
+      </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  <!-- =====
+
+       ===== -->
+
+
+
+
+
+
+  <div class="py-3 section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="mb-4">PRODUCTS&nbsp; -&nbsp; AVAILABLE</h1>
+        </div>
+      </div>
+      <div class="row">
+         <!-- =====
+            modal
+          ===== -->
+          <div class="modal-button" style="float:right;">
+               <button type="button"  class="modal-btn btn mb-2"  data-toggle="modal" data-target="#exampleModalCenter1" style="font-size:8px;">
+          	Edit
+          </button>
+          <!-- modal for changing of address -->
+          <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" id="myModal1">
+			  <div class="modal-dialog modal-dialog-centered" role="document" id="modal1" >
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Details</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			        	<div>
+			        	<labelstyle="margin-bottom:1rem;">Add your products:</label>
+			        	</div>
+			        	<div class="images">
+                                <div class="pic">
+                                 add
+                                </div>
+                        </div>
+
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+    			</div>
+			  </div>
+			</div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Footer -->
+  <div class="py-5 text-black" style="background-position: center center, center center;  background-size: cover, cover;  background-repeat: repeat, repeat;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center align-self-center p-4">
+          <div id="edit" title="edit your address">
+          <p class="mb-5"> <strong>Rank Studio Photography</strong> Shop No. UGF.55,Adarsh Complex,Egg. College Crossing, Sector B,<br> Jankipuram, Lucknow, Uttar Pradesh 226024 <br> <abbr title="Phone">P:</abbr> 093357 64331</p>
+          <p>Timing: open-9am close-10pm, everyday</p>
+          </div>
+          <!-- =====
+          modal
+          ===== -->
+          <div class="modal-button">
+               <button type="button" class="modal-btn btn mb-2"  data-toggle="modal" data-target="#exampleModalCenter3" style="font-size:8px;">
+          	Edit
+          </button>
+          <!-- modal for changing of address -->
+          <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document" >
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Details</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <form>
+			        	<div>
+			        	<label style="margin-right:26rem;">Address:</label>
+                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+			        	</div>
+
+			        	<div>
+			        	<label style="margin-right:25rem;">Phone:</label>
+			        	<input type="text" name="Phone">
+			        	</div>
+			        	<div>
+			        	<label style="margin-right:9rem;">Opening and Closing time:</label>
+			        	<input type="text" name="time">
+			        	</div>
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+    			</div>
+			  </div>
+			</div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-around"> <a href="#">
+                <i class="d-block fa fa-facebook-official text-dark fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-instagram text-dark fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-google-plus-official text-dark fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-pinterest-p text-dark fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-reddit text-dark fa-lg mx-2"></i>
+              </a> <a href="#">
+                <i class="d-block fa fa-twitter text-dark fa-lg ml-2"></i>
+              </a> </div>
+          </div>
+        </div>
+        <div class="col-md-6 p-0"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4525.3780267868!2d80.94485172300604!3d26.91107547800677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399957b48e7340bf%3A0xcd101ce4ce3858dc!2sRank+Studio+Photography!5e0!3m2!1sen!2sin!4v1555080052126!5m2!1sen!2sin" width="100%" height="350" frameborder="0" scrolling="no" ></iframe></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+  <script>
+  document.getElementById("submit_reg").addEventListener("click",function (event) {
+      var text = document.getElementById('username1').value;
+
+  </script>

@@ -1,22 +1,103 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-
+{% load staticfiles %}
 {% block body_block %}
-<div class="jumbotron">
+<meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="{% static 'register.css' %}">
+
+  <!--<a href="#">-->
+  <!--<i class="fas fa-arrow-left" aria-hidden="true"></i></a>-->
+    {% if messages %}
+<ul>
+   {% for message in messages %}
+     <li>{{ message }}</li>
+   {% endfor %}
+</ul>
+{% endif %}
+
+
   {% if registered %}
      <h1> Thank you for registering!</h1>
   {% else %}
-     <h1> Register Here! </h1>
-     <h3> Fill out the form: </h3>
 
-     <form  enctype="multipart/form-data" method="post">
+
+   <form  enctype="multipart/form-data" method="post" >
        {% csrf_token %}
-       {{user_form.as_p}}
-       {{ profile_form.as_p}}
-      <input type="submit" name="" value="submit">
+    <!--    {{user_form.as_p}}
+       {{ profile_form.as_p}} -->
+       <div class="container" style="display:flex; height: 80vh;justify-content: space-around;align-items: center;flex-direction:column;position:relative; font-family: sans-serif;">
+
+
+  <div class="heading" style="margin-top: 2rem;margin-bottom: 22px; padding-top:20px;">Please Register Here.</div>
+
+  <div class="form" >
+    <input type="text" name="username" autocomplete="off" required />
+    <label for="name" class="label-name">
+      <span class="content-name">Username:</span>
+    </label>
+
+  </div>
+
+
+  <div class="form">
+    <input type="email" name="email" autocomplete="off" required />
+    <label for="name" class="label-name">
+      <span class="content-name">Email:</span>
+    </label>
+
+  </div>
+
+  <div class="form">
+    <input type="Password" name="password" autocomplete="on" required />
+    <label for="name" class="label-name">
+      <span class="content-name">Password:</span>
+    </label>
+
+  </div>
+
+  <div class="form" >
+    <input type="text" name="phone_number" autocomplete="off" required />
+    <label for="name" class="label-name">
+      <span class="content-name">Phone Number:</span>
+    </label>
+  </div>
+
+  <div class="form-check-inline mt-4">
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="is_shopkeeper" value='False'>User
+    </label>
+  </div>
+
+
+  <div align="center" class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="is_shopkeeper">Shopkeeper
+    </label>
+  </div></div>
+  <div align="center" style=" position: relative; padding-top:15px;">
+       <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="g-recaptcha" data-sitekey="6Lc15ZkUAAAAAIjE0b-fNsZydV6XpPWrEYzbEZNM"></div>
+</div>
+
+    <div class="btn " style="display: flex;justify-content: space-around; align-items: center;">
+
+  <input class="submit-but" type="submit" name="submit" value="Submit" style="width: 4rem; margin-top: 2rem;">
+  </div>
+  </div>
+
+
+
 
        </form>
+      </div>
     {% endif %}
 
-</div>
+
+
+
+
+
+
 {% endblock %}

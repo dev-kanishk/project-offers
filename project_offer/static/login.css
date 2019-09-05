@@ -1,0 +1,99 @@
+.jumbotron{
+	font-family: Sitka Small;
+
+}
+
+.heading{
+	font-family: sitka;
+	font-size: 2rem;
+}
+
+/* ===========
+    alignment
+   =========== */
+form{
+    display:flex;
+    flex-direction:column;
+    margin-top:2.5rem;
+}
+
+.box{
+    width:37%;
+}
+/* ===========
+    form styling
+   =========== */
+label{
+
+}
+
+.box input[type="text"],.box input[type="password"]{
+	border: 0;
+	background: none;
+	margin-bottom:28px ;
+	border: 2px solid #3498db;
+	padding: 5px 20px;
+	width:16rem;
+	font-size: 1rem;
+	outline: none;
+	color: black;
+	border-radius: 24px;
+	transition: .25s;
+}
+.box input[type="text"]:focus,.box input[type="password"]:focus{
+	width: 18rem;
+	border-color: #9370DB;
+}
+.box input[type="submit"]{
+	border: 0;
+	background: none;
+	width:4.3rem;
+	border: 2px solid #3498db;
+	outline: none;
+	color: black;
+	border-radius: 20px;
+	transition: .25s;
+	cursor: pointer;
+}
+.box input[type="submit"]:hover{
+	background: #3498db;
+
+}
+
+.forget{
+    border: none;
+    color:blue;
+}
+
+@media screen and (max-width:380px){
+    .box{
+        margin-left:1.5rem;
+    }
+    .box input[type="submit"]{
+        margin-left:5.6rem;
+    }
+    .forget{
+        margin-right:1rem;
+    }
+
+}
+
+@media screen and (min-width:1000px){
+    .box{
+        margin-left:39%;
+    }
+    label{
+        margin-right:10rem;
+        margin-top:0.5rem;
+        margin-bottom:0.5rem;
+        font-size:1.2rem;
+    }
+    .box input[type="submit"]{
+        margin-left:5.6rem;
+    }
+
+}
+
+
+
+

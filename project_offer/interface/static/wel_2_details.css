@@ -1,0 +1,275 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+.first1{
+    width: 60%;
+    padding-top: 6rem;
+    padding-right: 1rem;
+}
+
+.image-shop{
+    width: 30rem;
+    height: 30rem;
+    border:1px solid grey;
+    transform-origin: 50% 60%;
+    overflow: hidden;
+}
+
+.image-shop:hover img{
+   transform:scale(1.1);
+   transition: transform 3s ease-in-out;
+    
+}
+.image-shop:hover{
+	box-shadow: 0 5px 5px;
+}
+
+
+.comment-box{
+    
+}
+.profilename h5{
+    margin-top: 0.1rem;
+    font-size: 19px;
+}
+.commented{
+    height: 2rem;
+    width: 18rem;
+    border:1px solid #E4DFDF; 
+    border-radius: 1rem; 
+    background-color: #F3F3F3;
+}
+.commented p{
+    font-size: 17px;
+}
+.commentarea{
+    margin-left: 2rem;
+}
+
+.comment_heading{
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 0.6rem;
+    margin-right: 1rem;
+}
+.form-control{
+   width: 22rem;
+   height: 95%;
+}
+
+.form-control:focus{
+    border:1px solid black; 
+    box-shadow: 0 2px 2px grey;
+
+}
+
+#buttonpost{
+    width: 7rem;
+    height: 2.1rem;
+    margin-top: 0.5rem;
+    margin-left:1.6rem;
+    color: white;
+    letter-spacing: 3px;
+    font-size: 24px;
+    font-weight: bold;
+    border:1px;
+    border-radius: 0.5rem;
+    background-color: lightgrey;
+}
+
+#buttonpost:hover{
+    background-color: grey;
+    box-shadow: 2px 2px 2px grey;
+}
+#commentin{
+
+}
+
+.seecomm{
+    margin:0rem 0rem 1rem 6rem;
+}
+.mob-shop{
+	display: none;
+}
+.like-tgl{
+    align-items: center;
+    margin-left: 13rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+}
+.like-tgl:hover i{
+    color: blue;
+}
+.count{
+    margin-left: 0.6rem;
+    font-size: 1.8rem;
+    margin-top: 0.7rem;
+}
+
+
+@media screen and (max-width:560px){
+
+
+.like-tgl{
+    align-items: center;
+    margin-left: 13rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+}
+
+.count{
+    margin-left: 0.5rem;
+    font-size: 1.6rem;
+    margin-top: 0.4rem;
+}
+.profilename h5{
+    margin-top: 0.1rem;
+    font-size: 17px;
+}
+.image-shop{
+    width: 20rem;
+    height: 20rem;
+    margin-top: -4rem;
+    margin-left: 4rem; 
+    
+}
+
+.second1{
+	display: none;
+}
+.mob-shop{
+	display: block;
+	text-align: center;
+	font-size: 1.3em;
+	margin-top: 0.5rem;
+}
+.mob-btn{
+    font-size: 1rem;    
+    color: white;
+    background-color: lightgrey;
+    margin-top: 0.4rem;
+    border: none;
+    
+}
+
+.comment_heading{
+    font-size: 18px;
+    margin-right: 0.4rem;
+}
+
+#buttonpost{
+    width: 4.2rem;
+    height: 1.8rem;
+    color: white;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    margin-top: 0.6rem;
+    margin-left: 0.6rem;
+}
+#commentin{
+    width: 16.9rem;
+}
+.profilename h5{
+    margin-top: 0.45rem;
+}
+
+}
+
+@media screen and (max-width:360px){
+.modal-footer #buttonpost{
+    width: 3.7rem;
+    height: 1.7rem;
+    margin-top: 0.65rem;
+
+}
+.modal-footer #commentin{
+    width: 15rem;
+}
+.like-tgl{
+    margin-left: 8rem;
+    margin-top: 0.7rem;
+}
+
+.profilename h5{
+    margin-top: 0.1rem;
+    font-size: 17px;
+}
+.image-shop{ 
+    margin-top: -6rem;
+    margin-left:-.5rem;   
+}
+
+.second1{
+    display: none;
+}
+.mob-shop{
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 0.5rem;
+}
+
+.comment_heading{
+    font-size: 16px;
+    margin-right: 0.4rem;
+    margin-left: -2.2rem;
+}
+
+#buttonpost{
+    width: 8rem;
+    height: 1.8rem;
+    letter-spacing: 0px;
+    font-size: 01rem;
+    margin-top: 0.6rem;
+    margin-left: 0.2rem;
+}
+#commentin{
+    width: 13rem;
+}
+}
+
+
+
+
+/* scroll */
+
+div#container {    
+    background: #fff;     
+    padding: 5px;     
+    margin-left: 7.1rem;    
+    width: 438px;     
+    height: 500px;    
+    overflow: auto;
+} 
+div.filler {    
+    margin: 10px;    
+    padding: 5px;    
+    width: 400px;   
+    height: 900px;   
+    background: white; 
+} 
+
+.like-button{
+    font-size: 23px;
+    font-family: serif;
+    font-weight: bold;
+    width: 6rem;
+    height: 2rem;
+    color: white;
+    border:1.3px solid  #FE0270;
+    border-radius:6rem;
+    background-color: lightpink;
+    position: relative;
+}
+
+
+.like-button:hover{
+    color: black;
+    border:1.3px solid #FE63A7;
+   
+}
+

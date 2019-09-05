@@ -1,10 +1,286 @@
-<!DOCTYPE html>
-{% extends "base.html" %}
+<!DOCTYPE html>{% extends "base.html" %}
+{% load static %}
+
 {% block body_block %}
 
-<div class="jumbotron">
-  <h1>Welcome to Offers.com</h1>
-  <p>contact-8791510800, for posting your offer</p>
+
+<style>
+#carouselExampleIndicators{
+    width:100%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.rslides {
+  position: relative;
+  list-style: none;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  }
+
+.rslides li {
+  -webkit-backface-visibility: hidden;
+  position: absolute;
+  display: none;
+  width: 100%;
+  left: 0;
+  top: 0;
+  }
+
+.rslides li:first-child {
+  position: relative;
+  display: block;
+  float: left;
+  }
+
+.rslides img {
+  display: block;
+  height: auto;
+  float: left;
+  width: 100%;
+  border: 0;
+  }
+.offers-item{
+    transform-origin: 50% 60%;
+    overflow: hidden;
+}
+.offers-item img{
+    border-radius:4px;
+}
+.offers-item:hover{
+    border:1px solid grey;
+    border-radius:8px;
+    box-shadow:0 5px 5px grey;
+}
+.offers-item:hover img{
+     transform:scale(1.1);
+   transition: transform .5s ease-in-out;
+}
+.offers-button{
+    background-color:white;
+    color:black;
+    border:1px solid black;
+    opacity:0.67;
+}
+.offers-button:hover,.offers-button:focus{
+    background-color:black;
+    color:white;
+}
+.offers-item{
+    margin-top:0.5rem;
+    margin-left:2em;
+    margin-bottom:1rem;
+
+}
+@media screen and (max-width:440px){
+    .container h4{
+        font-size:18px;
+        font-weight:bold;
+    }
+    .container{
+        font-size:14px;
+    }
+    .container .btn{
+            font-size:14px;
+    }
+
+    .offers-item{
+        margin-top:0;
+         margin-right:0rem;
+         margin-left:0px;
+    }
+}
+
+@media screen and (max-width:560px){
+
+    .big-picts{
+    height:10rem;}
+    #carouselExampleIndicators{
+    width:100%;
+}
+
+}
+
+footer{
+    background:grey;
+}
+footer p{
+    color:white;
+    font-family:sans-serif;
+    padding:4px 4px 4px 4px;
+}
+
+</style>
+ <!--<link rel="stylesheet" href="{% static "responsiveslides.css" %}">-->
+  <!--<link rel="stylesheet" href="{% static "demo.css" %}">-->
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>-->
+  <!--<script src="{% static "responsiveslides.js" %}"></script>-->
+<!--   <ul class="rslides" id="slider1" style="display:block; margin-left: auto; margin-right: auto; margin-bottom : 2rem; margin-top:2rem;">-->
+<!--  <li><img src="{% static "pics/s1.png" %}" alt=""></li>-->
+<!--  <li><img src="{% static "pics/s2.jpg" %}" alt=""></li>-->
+<!--  <li><img src="{% static "pics/s3.jpg" %}" alt=""></li>-->
+<!--</ul>-->
+ <!--<div class="callbacks_container" style="display:block; margin-left: auto; margin-right: auto; margin-bottom : 2rem; margin-top:2rem;">>-->
+ <!--     <ul class="rslides" id="slider4">-->
+ <!--       <li>-->
+ <!--         <img src="{% static "pics/s1.png" %}" alt="">-->
+ <!--         <p class="caption">This is a caption</p>-->
+ <!--       </li>-->
+ <!--       <li>-->
+ <!--         <img src="{% static "pics/s2.jpg" %}" alt="">-->
+ <!--         <p class="caption">This is another caption</p>-->
+ <!--       </li>-->
+ <!--       <li>-->
+ <!--         <img src="{% static "pics/s3.jpg" %}" alt="">-->
+ <!--         <p class="caption">The third caption</p>-->
+ <!--       </li>-->
+ <!--     </ul>-->
+ <!--   </div>-->
+
+	<div id="carouselExampleIndicators" class="carousel slide px-2 py-3" data-ride="carousel" style="margin-top:1rem; ">
+  		<ol class="carousel-indicators">
+    		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  		</ol>
+  		<div class="carousel-inner" style="border-radius:0.5rem;">
+    		<div class="carousel-item active"><a href="{%url 'shop' %}">
+      		 <img class="d-block w-100" src="{% static "pics/s1.png" %}" alt="First slide" style="max-height:20rem; border-radius:0.5rem; display:block; margin-right:auto; margin-left:auto;">
+      		   <div class="carousel-caption d-none d-md-block" >
+    				<h5 style="color:white;">MuRadaBadi</h5>
+    				<p style="color:white;">its a shop in hazratganj</p></a>
+  				</div>
+
+    		</div>
+    		<div class="carousel-item" style="border-radius:0.5rem;"><a href="#">
+     		 <img class="d-block w-100" src="{% static "pics/s2.jpg" %}" alt="Second slide" style="max-height:20rem; border-radius:0.5rem;">
+     		  <div class="carousel-caption d-none d-md-block">
+    				<h5 style="color:white;">KanDElKhand</h5>
+    				<p style="color:white;">its a shop in gomti nagar</p></a>
+  				</div>
+
+    		</div>
+    	<div class="carousel-item" style="border-radius:0.5rem;"><a href="#">
+      	 <img class="d-block w-100" src="{% static "pics/s3.jpg" %}" alt="Third slide" style="max-height:20rem; border-radius:0.5rem;">
+      	  <div class="carousel-caption d-none d-md-block">
+    				<h5 style="color:white;">Lucknowiiy</h5>
+    				<p style="color:white;">its a shop in lucknow</p></a>
+  				</div>
+
+    	</div>
+  		</div>
+  	  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon " aria-hidden="true" style="background-color:lightgrey; height: 5rem;width: 2rem;border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; "></span>
+        <span class="sr-only">Previous</span>
+  	  </a>
+  	 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+     <span class="carousel-control-next-icon " aria-hidden="true" style="background-color:lightgrey; height: 5rem;width: 2rem;border-radius: 0.5rem 0.5rem 0.5rem 0.5rem; "></span>
+     <span class="sr-only">Next</span>
+     </a>
+	</div>
+
+
+<!-- ======
+    its a offers display container
+     ====== -->
+
+<div class="container">
+
+         <div class="row mx-2">
+         {% for offer in offer_details %}
+
+
+      {% if offer.ready_post %}
+      <div class="col-md-2 col-6 col-lg-2 offers-item border " style="height:19rem;">
+        <img class="offers-ima center-block img-fluid my-3 shadowed" src="{{offer.index_photo.url}}" alt="offer" width="300" style=" height:9rem;">
+
+          <h4 class="mb-0 text-center">{{offer.offer_tag}}</h4>
+          <p class="mb-0 text-center">{{offer.shop_name}}</p>
+          <div class="text-center">
+          <a href="{{offer.id}}" class="btn stretched-link offers-button mt-1">offer details</a>
+          </div>
+      </div>
+
+
+
+
+      {% endif %}
+    {% endfor %}
+
+
+
+        </div>
+</div>
+
+
+
+
+<footer>
+    <div class="help" style="">
+        <p>Contact 8791510800 for futher details and posting your offer here</p>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
+<script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+
+      // Slideshow 1
+      $("#slider1").responsiveSlides({
+        maxwidth: 800,
+        speed: 800
+      });
+
+      // Slideshow 2
+      $("#slider2").responsiveSlides({
+        auto: false,
+        pager: true,
+        speed: 300,
+        maxwidth: 540
+      });
+
+      // Slideshow 3
+      $("#slider3").responsiveSlides({
+        manualControls: '#slider3-pager',
+        maxwidth: 540
+      });
+
+      // Slideshow 4
+      $("#slider4").responsiveSlides({
+        auto: false,
+        pager: false,
+        nav: true,
+        speed: 500,
+        namespace: "callbacks",
+        before: function () {
+          $('.events').append("<li>before event fired.</li>");
+        },
+        after: function () {
+          $('.events').append("<li>after event fired.</li>");
+        }
+      });
+
+    });
+  </script>
+
 
 {% endblock %}

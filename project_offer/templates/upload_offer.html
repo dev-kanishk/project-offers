@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+<link rel="stylesheet" href="{% static 'upload_offer.css' %}" type="text/css">
+{% if user.is_authenticated and user.userprofileinfo.is_verifieduser %}
+
+<!-- <form action="{% url 'upload_offer' %}" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+
+{{form.as_p}}
+<input type="submit" value="upload" name="upload_offer">
+
+</form> -->
+<!--   <h2 class="sub-head my-4 mr-1" style="font-family: serif;  letter-spacing: 0.2rem; text-align: center;">Fill the following detials inorder to post your offer.</h2>
+  <div class="container">
+  <div class="dropdown">
+  <div class="dropbtn">{{form.categories}}
+
+  </div>
+  <div class="dropdown-content" id="myDropdown"> -->
+
+  </div>
+  </div>
+  <br><br><br><br>
+<!--   <form action="{% url 'upload_offer' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="fileselect">
+      <div class="container">
+
+    <div class="type" style="">
+   <div style="padding: 1rem; padding-left: 0; : "> <div style="font-size: 1.5rem; float: left; padding-right: 0.5rem; ">Select your Offer category : </div>
+
+
+  <select name="categories" >
+    <option class="dropdown-content" id="Dropdown" value="1">Gym</option>
+    <option class="dropdown-content" id="Dropdown" value="2">Mobile Shop</option>
+    <option class="dropdown-content" id="Dropdown" value="3">Books</option>
+    <option class="dropdown-content" id="Dropdown" value="Daily needs">Daily needs</option>
+  </select></div>
+
+          <p class="offer">OFFER Name:
+  <input class="" type="text" name="offer_name"></p>
+
+
+    <p class="offer">OFFER discription:
+  <input class="message" type="text" name="text"></p>
+    <p class="text">Photo 1:
+    <input type="file" name="photo1" value="Browse.." ></p>
+    <p1 style="font-size:1rem;">Photo 1 is compulsory</p1>
+    <p class="text">Photo 2:
+    <input type="file" name="photo2" value="Browse.."></p>
+    <p class="text">Photo 3:
+    <input type="file" name="photo3" value="Browse.."></p>
+    <p class="text">Photo 4:
+    <input type="file" name="photo4" value="Browse.."></p>
+    <p class="text">Photo 5:
+    <input type="file" name="photo5" value="Browse.."></p>
+    <p></p>
+    <br>
+    <input class="upload" type="submit" name="" value="UPLOAD">
+    <br><br><br>
+  </div>
+</div>
+</form>
+<script>
+function hello() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+  var myDropdown = document.getElementById("myDropdown");
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+}
+</script>
+{% else %}
+<h1> Login First </h1>
+<p><a href="{% url 'interface:user_login' %}">Login</a></p>
+<p><a class="nav-link" href="{%url 'interface:register'%}">Register Here</a></p>
+{% endif %}
+ -->
+
+
+
+
+<style type="text/css">
+
+
+body {
+  background-color: #363940;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+}
+
+.wrapper  {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  width: 360px;
+  max-width: 100%;
+  margin: 50px auto;
+  align-self: center;
+  box-sizing: border-box;
+}
+
+header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  display: flex;
+}
+h1 {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #7A7B7F;
+}
+header span {
+  flex: 1;
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+}
+.ways ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.ways li {
+  align-self: center;
+  flex: 1;
+  background-color: #F5F7FA;
+  text-align: center;
+  cursor: pointer;
+  padding: 15px 0;
+  color: #999;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border: 1px solid #ddd;
+}
+
+.ways li:first-child {
+  border-right: 0;
+}
+.ways li:last-child {
+  border-left: 0;
+}
+.ways li.active {
+  border: 2px solid #1AA1E5;
+  color: #66676C;
+}
+.ways li.active::before {
+  content: '\f00c';
+  font-family: 'fontawesome';
+  color: #1AA1E5;
+}
+.ways li:not(.active) {
+  padding: 16px 0;
+}
+section {
+  display: none;
+}
+section.active {
+  display: block;
+}
+section input,
+section textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  outline: 0;
+  background-color: #F5F7FA;
+  padding: 10px;
+  margin-bottom: 10px;
+  letter-spacing: 1.4px;
+}
+section textarea {
+  min-height: 200px;
+}
+section select {
+  display: none;
+}
+
+.select-option {
+  background-color: #F5F7FA;
+  color: #999;
+  font-size: 15px;
+  position: relative;
+  cursor: pointer;
+}
+.select-option::before {
+  content: '\f107';
+  font-family: 'fontawesome';
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 9px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.select-option div:not(.option) {
+  padding: 10px 10px;
+  border: 1px solid #ddd;
+}
+.select-option div:last-child,
+.select-option .head {
+  border-bottom: 1px solid #ddd;
+}
+.select-option .option {
+  display: none;
+}
+.select-option .option div {
+  text-transform: capitalize;
+}
+.select-option.active .option {
+  display: block;
+  position: absolute;
+  width: 100%;
+  background-color: #F5F7FA;
+  box-sizing: border-box;
+  padding: 0;
+  margin-top: -1px;
+  z-index: 2;
+}
+.select-option .option div {
+  border-bottom: 0;
+}
+.images {
+  display: flex;
+  flex-wrap:  wrap;
+  margin-top: 20px;
+}
+.images .img,
+.images .pic,.images_index .pic_index,.images_index .img_index{
+  flex-basis: 31%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+.images .img,.images_index .img_index {
+  width: 112px;
+  height: 93px;
+  background-size: cover;
+  margin-right: 10px;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.images .img:nth-child(3n) {
+  margin-right: 0;
+}
+.images .img span {
+  display: none;
+  text-transform: capitalize;
+  z-index: 2;
+}
+
+.images .img::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  transition: opacity .1s ease-in;
+  border-radius: 4px;
+  opacity: 0;
+  position: absolute;
+}
+.images_index .img_index::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  transition: opacity .1s ease-in;
+  border-radius: 4px;
+  opacity: 0;
+  position: absolute;
+}
+.images .img:hover::after {
+  display: block;
+  background-color: #000;
+  opacity: .5;
+}
+.images .img:hover span {
+  display: block;
+  color: #fff;
+}
+.images .pic{
+  background-color: #F5F7FA;
+  align-self: center;
+  text-align: center;
+  padding: 40px 0;
+  text-transform: uppercase;
+  color: #848EA1;
+  font-size: 12px;
+  cursor: pointer;
+}
+.images_index{
+    display:flex;
+    margin-top: 20px;
+}
+.img_index{
+    margin-left:8px;
+    margin-top:1px;
+}
+
+.images_index .pic_index{
+  background-color: #F5F7FA;
+  align-self: center;
+  text-align: center;
+  width:6.8rem;
+  padding: 40px 0;
+  text-transform: uppercase;
+  color: #848EA1;
+  font-size: 12px;
+  cursor: pointer;
+}
+.submit{
+    background:white;
+    color:black;
+    border-radius:5px;
+    border:1px solid black;
+}
+.submit:hover,.submit:focus{
+    background:black;
+    color:white;
+    opacity:0.9;
+}
+footer span{
+    color:grey;
+}
+footer span:hover{
+    color:black;
+}
+/*.pic_index{
+  width: 2rem;
+  height: 2rem;
+}*/
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    margin-top: 0;
+  }
+  header {
+    flex-direction: column;
+  }
+  header span {
+    text-align: left;
+    margin-top: 10px;
+  }
+  .ways li,
+  section input,
+  section textarea,
+  .select-option .head,
+  .select-option .option div {
+   font-size: 8px;
+  }
+  .images .img,
+  .images .pic ,{
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+  .images_index .pic_index,.images_index .pic_index{
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+}
+
+.wrapper footer ul {
+  margin: 0;
+  margin-top: 30px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.wrapper footer ul li {
+  flex: 1;
+}
+.wrapper footer li span {
+  text-transform: capitalize;
+  cursor: pointer;
+}
+.wrapper footer li:first-child {
+  color: #999;
+  text-align: left;
+  font-size: 12px;
+}
+.wrapper footer li:first-child span {
+  display: inline-block;
+  border-bottom: 1px solid #ddd;
+}
+.wrapper footer li:last-child {
+  text-align: right;
+}
+.wrapper footer li:last-child span {
+  background-color: #22A4E6;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.notification {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  top: auto;
+  right: auto;
+}
+
+.notification p {
+  margin: 0;
+  padding: 0;
+}
+.notification .btn {
+  padding: 16px 20px;
+  border-radius: 5px;
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 12px;
+  align-items: center;
+  animation: fadeIn .4s ease-in;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.notification .btn::before {
+  margin-right: 12px;
+  font-family: 'fontawesome';
+  font-size: 15px;
+}
+.notification span {
+  margin-left: 10px;
+  cursor: pointer;
+  flex: 1;
+  text-align: right;
+}
+
+.notification .error {
+  background-color: #ECC8C5;
+  border: 1px solid #BD8181;
+}
+.notification .error span {
+  color: #C79995;
+}
+.notification .error::before {
+  content: '\f05c';
+  color: #B2312F;
+
+}
+.notification .success {
+  background-color: #DEF2D6;
+  border: 1px solid #B3CEA9;
+}
+.notification .success span {
+  color: #AFC7A7;
+}
+.notification .success::before {
+  content: '\f00c';
+  color: #5A7052;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 12px;
+}
+footer a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 5px;
+}
+
+
+ </style><br>
+<!-- <form method="POST" enctype="multipart/form-data">
+{{form.as_p}}
+{{formset.as_p}}
+{% csrf_token %}
+<input type="submit" name="submit">
+</form>  -->
+<div class="wrapper">
+  <header>
+    <h1>Stock photo</h1>
+    <span>ID: 5988014</span>
+  </header>
+
+
+
+  <div class="sections">
+    <form method="POST" enctype="multipart/form-data">
+    <section class="active">
+      <input type="text" placeholder="Title" name="offer_tag" style="color:black;" />
+      <textarea placeholder="offer discription" name="text" style="color:black;" ></textarea>
+      <select id="category" name="categories">
+       <option class="dropdown-content" id="Dropdown" value="1">Gym</option>
+    <option class="dropdown-content" id="Dropdown" value="2">Mobile Shop</option>
+    <option class="dropdown-content" id="Dropdown" value="3">Books</option>
+    <option class="dropdown-content" id="Dropdown" value="Daily needs">Daily needs</option>
+      </select>
+      {{ formset.management_form }}
+      <div class="select-option">
+        <div class="head">Category</div>
+        <div class="option"></div>
+      </div>
+
+
+
+
+        <script type="text/javascript">
+    function indexphoto(){
+      var uploade_r = $('<input type="file" hidden id = index_photo_uploader name="index_photo" accept="image/*" />')
+      $("#uploade_r").html(uploade_r)
+
+      $("#index_photo_uploader").click()
+    $("#index_photo_uploader").change(function(){
+      var reader = new FileReader()
+          reader.onload = function(event) {
+            $('#here').html('<div class="img_index" id = index_photo style="background-image: url(\'' + event.target.result + '\');" rel="'+ event.target.result  +'"></div>')
+
+
+          }
+          reader.readAsDataURL($("#index_photo_uploader")[0].files[0])
+
+    })
+    }
+</script>
+ <div class="images_index">
+        <div class="pic_index" title="" onclick="indexphoto()">
+
+          add offer profile pic
+        </div>
+        <div id="here">
+        </div>
+        <div id="uploade_r">
+
+        </div>
+        </div>
+      </div>
+      <div class="images">
+        <div class="pic" title="-1">
+
+          add related pics
+        </div>
+      </div>
+
+    </section>
+
+
+  <footer>
+    <ul>
+      <li><span id="reset">reset</span></li>
+      <li><input type="submit" name="submit" placeholder="submit" class="submit"></li>
+    </ul>
+  </footer>
+
+</div>{% csrf_token %}
+
+</form>
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+(function ($) {
+  $(document).ready(function () {
+
+    generateID()
+    choose()
+    generateOption()
+    selectionOption()
+    removeClass()
+    uploadImage()
+    submit()
+    resetButton()
+    removeNotification()
+    autoRemoveNotification()
+    autoDequeue()
+
+    var ID
+    var way = 0
+    var queue = []
+    var fullStock = 10
+    var speedCloseNoti = 1000
+
+    function generateID() {
+      var text = $('header span')
+      var newID = ''
+
+      for(var i = 0; i < 3; i++) {
+        newID += Math.floor(Math.random() * 3)
+      }
+
+      ID = 'ID: 5988' + newID
+      text.html(ID)
+    }
+
+    function choose() {
+      var li = $('.ways li')
+      var section = $('.sections section')
+      var index = 0
+      li.on('click', function () {
+        index = $(this).index()
+        $(this).addClass('active')
+        $(this).siblings().removeClass('active')
+
+        section.siblings().removeClass('active')
+        section.eq(index).addClass('active')
+        if(!way) {
+          way = 1
+        }  else {
+          way = 0
+        }
+      })
+    }
+
+    function generateOption() {
+      var select = $('select option')
+      var selectAdd = $('.select-option .option')
+      $.each(select, function (i, val) {
+          $('.select-option .option').append('<div rel="'+ $(val).val() +'">'+ $(val).html() +'</div>')
+      })
+    }
+
+    function selectionOption() {
+      var select = $('.select-option .head')
+      var option = $('.select-option .option div')
+
+      select.on('click', function (event) {
+        event.stopPropagation()
+        $('.select-option').addClass('active')
+      })
+
+      option.on('click', function () {
+        var value = $(this).attr('rel')
+        $('.select-option').removeClass('active')
+        select.html(value)
+
+        $('select#category').val(value)
+      })
+    }
+
+    function removeClass() {
+      $('body').on('click', function () {
+        $('.select-option').removeClass('active')
+      })
+    }
+
+    function uploadImage() {
+      var button = $('.images .pic')
+
+
+
+
+      var images = $('.images')
+
+      button.on('click', function () {
+      var new_title = parseInt(button.attr('title'),10)+ 1;
+      button.attr('title', new_title)
+      var img_id = String("form-"+new_title+"-photo")
+      var uploader = $('<input type="file" hidden id = img_id accept="image/*" />')
+      images.prepend(uploader)
+      $('#img_id').attr('name',img_id)
+
+      uploader.click()
+
+
+       $('#img_id').on('change', function () {
+
+
+          var reader = new FileReader()
+          reader.onload = function(event) {
+            images.prepend('<div class="img" id = img_preview style="background-image: url(\'' + event.target.result + '\');" rel="'+ event.target.result  +'"><span>remove</span></div>')
+            $("#img_preview").attr('title',new_title)
+            $('#img_id').attr('id',img_id)
+
+          }
+          reader.readAsDataURL(uploader[0].files[0])
+
+
+
+       })})
+
+      images.on('click', '.img', function () {
+        var source = $(this).attr('title')
+        $(String("#form-"+source+"-photo")).remove()
+
+        $(this).remove()
+      })
+
+    }
+
+    function submit() {
+      var button = $('#send')
+
+      button.on('click', function () {
+        if(!way) {
+          var title = $('#title')
+          var cate  = $('#category')
+          var images = $('.images .img')
+          var imageArr = []
+
+
+          for(var i = 0; i < images.length; i++) {
+            imageArr.push({url: $(images[i]).attr('rel')})
+          }
+
+          var newStock = {
+            title: title.val(),
+            category: cate.val(),
+            images: imageArr,
+            type: 1
+          }
+
+          saveToQueue(newStock)
+        } else {
+          // discussion
+          var topic = $('#topic')
+          var message = $('#msg')
+
+          var newStock = {
+            title: topic.val(),
+            message: message.val(),
+            type: 2
+          }
+
+          saveToQueue(newStock)
+        }
+      })
+    }
+
+    function removeNotification() {
+      var close = $('.notification')
+      close.on('click', 'span', function () {
+        var parent = $(this).parent()
+        parent.fadeOut(300)
+        setTimeout(function() {
+          parent.remove()
+        }, 300)
+      })
+    }
+
+    function autoRemoveNotification() {
+      setInterval(function() {
+        var notification = $('.notification')
+        var notiPage = $(notification).children('.btn')
+        var noti = $(notiPage[0])
+
+        setTimeout(function () {
+          setTimeout(function () {
+           noti.remove()
+          }, speedCloseNoti)
+          noti.fadeOut(speedCloseNoti)
+        }, speedCloseNoti)
+      }, speedCloseNoti)
+    }
+
+    function autoDequeue() {
+      var notification = $('.notification')
+      var text
+
+      setInterval(function () {
+
+          if(queue.length > 0) {
+            if(queue[0].type == 2) {
+              text = ' Your discusstion is sent'
+            } else {
+              text = ' Your order is allowed.'
+            }
+
+            notification.append('<div class="success btn"><p><strong>Success:</strong>'+ text +'</p><span><i class=\"fa fa-times\" aria-hidden=\"true\"></i></span></div>')
+            queue.splice(0, 1)
+
+          }
+      }, 10000)
+    }
+
+    function resetButton() {
+      var resetbtn = $('#reset')
+      resetbtn.on('click', function () {
+        reset()
+      })
+    }
+
+    // helpers
+    function saveToQueue(stock) {
+      var notification = $('.notification')
+      var check = 0
+
+      if(queue.length <= fullStock) {
+        if(stock.type == 2) {
+            if(!stock.title || !stock.message) {
+              check = 1
+            }
+        } else {
+          if(!stock.title || !stock.category || stock.images == 0) {
+            check = 1
+          }
+        }
+
+        if(check) {
+          notification.append('<div class="error btn"><p><strong>Error:</strong> Please fill in the form.</p><span><i class=\"fa fa-times\" aria-hidden=\"true\"></i></span></div>')
+        } else {
+          notification.append('<div class="success btn"><p><strong>Success:</strong> '+ ID +' is submitted.</p><span><i class=\"fa fa-times\" aria-hidden=\"true\"></i></span></div>')
+          queue.push(stock)
+          reset()
+        }
+      } else {
+        notification.append('<div class="error btn"><p><strong>Error:</strong> Please waiting a queue.</p><span><i class=\"fa fa-times\" aria-hidden=\"true\"></i></span></div>')
+      }
+    }
+    function reset() {
+
+      $('#title').val('')
+      $('.select-option .head').html('Category')
+      $('select#category').val('')
+
+      var images = $('.images .img')
+      for(var i = 0; i < images.length; i++) {
+        $(images)[i].remove()
+      }
+
+      var topic = $('#topic').val('')
+      var message = $('#msg').val('')
+    }
+  })
+})(jQuery)
+
+
+</script>
+{% endblock %}

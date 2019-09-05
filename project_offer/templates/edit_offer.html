@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+{% if user.is_authenticated and user.userprofileinfo.is_verifieduser %}
+<form action="{% url 'edit' pk=object.pk %}" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	
+{{form.as_p}}
+<input type="submit" value="upload" name="upload_offer">
+
+</form>
+{% else %}
+<h1> Login First </h1>
+<p><a href="{% url 'interface:user_login' %}">Login</a></p>
+<p><a class="nav-link" href="{%url 'interface:register'%}">Register Here</a></p>
+{% endif %}
+
+{% endblock %}

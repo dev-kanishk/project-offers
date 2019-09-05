@@ -1,0 +1,64 @@
+<!DOCTYPE html>{% extends "base.html" %}
+{% load static %}
+
+{% block body_block %}
+
+<link rel="stylesheet" href="{% static 'shopkeeper-discrip.css' %}" type="text/css">
+<div class="container d-flex flex-column text-center">
+			<h3 class="sub-head my-4 mr-1" style="font-family: serif;  letter-spacing: 0.2rem;">Please provide further details to complete your profile.</h3>
+
+		<div class="main">
+			<section style="width:100%; height:40rem; ">
+				<form  method="POST" style="padding: 1rem;" enctype="multipart/form-data">
+
+	            {% csrf_token %}
+
+				<div class=" d-flex justify-content-center my-4 mr-1">
+					<p>Your Name:</p>
+					<input id="bb" type="text" name="">
+				</div>
+				<div class="d-flex justify-content-center my-4">
+					<p>Shop Name:</p>
+					<input id="bb" type="text" name="shop_name">
+				</div>
+				<div class="d-flex justify-content-center my-4 pb-1">
+					<p>Details you want to provide:</p>
+					<textarea class="text mr-3 ml-1 " for="details" placeholder="enter your details" name="shop_discription"></textarea>
+				</div>
+				<div class="d-flex justify-content-center my-4">
+					<p>Address:</p>
+					<input id="bb" type="text" name="address">
+				</div>
+				<div id="pic-upload">
+				<div class="d-flex justify-content-center my-4">
+					<p>Photo 1:</p>
+					<input type="file" accept="image/*" name="photo1" value="Browse...">
+
+				</div>
+				<div class="d-flex justify-content-center my-4">
+					<p>Photo 2:</p>
+					<input type="file" accept="image/*" name="photo2" value="Browse...">
+
+				</div>
+				<div class="d-flex justify-content-center my-4">
+					<p>Photo 3:</p>
+					<input type="file" accept="image/*" name="photo3" value="Browse...">
+
+				</div>
+				<div class="d-flex justify-content-center my-4">
+					<p>Photo 4:</p>
+					<input type="file" accept="image/*" name="photo3" value="Browse...">
+
+				</div>
+								 <div class="d-flex justify-content-center my-4">
+				<input type="submit" name="" value="submit">
+			  </div>  </form>
+			</section>
+
+		</div>
+
+
+
+	</div>
+
+	{% endblock %}

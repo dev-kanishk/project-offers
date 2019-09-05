@@ -1,20 +1,42 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block body_block %}
+<meta charset="utf-8">
+<style>
 
-<div class="jumbotron">
-  <h1>Please login</h1>
-  <form action="{%url 'interface:user_login' %}" method="post">
+
+</style>
+<div style="margin-top:2rem; padding:0.5rem;text-align:center;">
+
+<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+
+
+  <h1 class="heading text-center">LOG IN</h1>
+<div class="container">
+
+  <form class="box" action="{%url 'interface:user_login' %}" method="post">
     {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" name="username" placeholder="Username">
+    <div class="usname"></div>
+    <label class="user-name font-weight-normal" for="username">Username:</label>
+    <input type="text" name="username" class="text-center" placeholder="Username" required>
 
-    <label for="password">Password</label>
-    <input type="password" name="password">
+   <label class="pass font-weight-normal" for="password">Password</label>
+   <input type="password" name="password" class="text-center" placeholder="Password" required>
 
-    <input type="submit" value="Login">
+   <input type="submit" value="Login">
+   </div>
+   <br>
+
 
   </form>
 
+
+
+
+<button onclick="window.location.href = 'https://prooffer.pythonanywhere.com/interface/reset-password';"
+class="btn forget" style="">Forget password!</button>
+
+</div>
 </div>
 {% endblock %}

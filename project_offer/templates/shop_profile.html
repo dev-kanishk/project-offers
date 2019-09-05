@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+<div style=" margin-top:3rem; padding:1rem;" background="{%static "pics/screenshot-31.png" %}">
+<h1>Welcome to shopprofile page </h1>
+
+
+<p> shop name: {{shop}}</p>
+<p> discription: {{shop.shop_discription}}</p>
+
+<img src="{% static "pics/screenshot-31.png" %}" style="width:100%">
+</div>
+{% endblock %}

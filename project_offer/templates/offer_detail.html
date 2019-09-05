@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block body_block %}
+{% load static %}
+
+
+	<link rel="stylesheet" href="{% static 'wel_2_details.css' %}">
+ <link rel="stylesheet" href="{% static 'owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'owl.theme.default.min.css' %}">
+
+
+<style>
+
+
+
+</style>
+
+
+
+<div class="container">
+    <div class="container c1 mt-5">
+				<div class="mainheadin mb-3">
+					<div class="shop-head text-center" style="font-weight: bolder;"><h1 >{{offer.offer_name}}</h1></div>
+					<div class="shopdetailing text-center"><h6>By {{offer.shop_name}}</h6></div>
+				</div>
+
+			<div class="d-flex">
+
+			  <div class="first1">
+					<section class="img image-shop" style="border-radius: 1rem;">
+						<img src="{{offer.index_photo.url}}" alt="shop image" style="width: 100%;height: 100%;border-radius: 1rem;">
+					</section>
+					<div class="like-tgl d-flex">
+            {% if liked  %}
+					<i id="like" class="fa fa-thumbs-up" style="color: #139CDD;" ></i>
+            {% else %}
+            <i id="like" class="fa fa-thumbs-up" ></i>
+            {% endif %}
+
+						<h8 class="count" id="count">{{offer.likes.count}}</h8>
+					</div>
+
+
+			  </div>
+
+			  <div class="second1 mt-5">
+
+				  <div class="bestoff-head text-center "><h4 style="font-style: italic;">Best Offer: {{offer.text}}</h4>
+					</div>
+
+				 <div id='container1'>
+				 {% for comment in comment_s %}
+	 	        <div class='filler'>
+	 	        <div class="comment-box d-flex ">
+				<div class="profilename" id="dp" style=""> <h5>{{comment.user}}</h5> </div>
+
+				<div class="commented ml-3" id="usercom" style=""><p style="margin-left: 0.3rem;">{{comment.comment}}</p></div>
+
+				<div class="delcom ml-4 mt-1">
+					{% if request.user == comment.user %}
+
+						<i class="fa fa-trash" id="del" title="{{comment.pk}}" onclick="delete_comment(this)" ></i>
+					{% endif %}</div>
+			  </div>
+	 	 </div>
+	 	 {% endfor %}
+	 	 <div id="new"> </div>
+	 	    </div>
+
+	 	    <div class="commentarea">
+
+					<form class="d-flex" id="myform" method="POST"  action="/{{offer.pk}}/comment/">
+					<p class="comment_heading ">Comment:</p>{% csrf_token %}
+					<input id="commentin" type="text" name="comment" class="form-control mt-2">
+					<button id="submit" class="">POST</button>
+					</form>
+				  </div>
+
+
+			  </div>
+
+			</div>
+
+		</div>
+
+		<section class="mob-shop">
+			<div class="mob-head">
+				<strong>Best offer: {{offer.text}}</strong>
+			</div>
+			<div class="comments">
+				<button type="button" class="btn mob-btn" data-toggle="modal" data-target="#exampleModalLong"><p>view all comments</p></button>
+
+				<!-- model for all comments -->
+				<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  					<div class="modal-dialog" role="document">
+    					<div class="modal-content">
+     					 <div class="modal-header">
+       						 <h5 class="modal-title" id="exampleModalLongTitle">{{offer.offer_name}}</h5>
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         			 <span aria-hidden="true">&times;</span>
+        			</button>
+     					 </div>
+      					<div class="modal-body">
+
+
+							   	 {% for comment in comment_s %}
+							   	 <div class="comment-box d-flex ">
+				<div class="profilename" id="dp" style=""> <h5>{{comment.user}}</h5> </div>
+
+				<div class="commented ml-3" id="usercom" style=""><p style="margin-left: 0.3rem;">{{comment.comment}}</p></div>
+
+				<div class="delcom ml-4 mt-1">{% if request.user == comment.user %}
+
+						<i class="fa fa-trash" id="del" title="{{comment.id}}" onclick="delete_mobile_comment(this)"></i>
+
+
+					{% endif %}
+            </div>
+          </div>
+			   {% endfor %}
+			   <div id="new2">
+
+			   </div>			</div>
+
+     			 <div class="modal-footer">
+        			<form class="d-flex" id="myform" method="POST" action="/{{offer.pk}}/comment/" >
+					<p class="comment_heading ">Comment:</p>{% csrf_token %}
+					<input id="commentin2" type="text" name="comment" class="form-control mt-2" placeholder="Add a comment">
+					<input type="submit"  id="submit2" placeholder="POST">
+					</form>
+      				</div>
+   				 </div>
+ 			 </div>
+		</div>
+	</div>
+  <!-- comment area left -->
+			<div class="area-fr-com">
+           {% for comment in comment_s_3 %}
+        <div class="comment-box d-flex ">
+        <div class="profilename" id="dp" style=""> <h5>{{comment.user}}</h5> </div>
+
+        <div class="commented ml-3" id="usercom" style=""><p style="margin-left: 0.3rem;">{{comment.comment}}</p></div>
+
+        <div class="delcom ml-4 mt-1">{% if request.user == comment.user %}
+
+            <i class="fa fa-trash" id="del" title="{{comment.id}}" onclick="delete_mobile_comment(this)"></i>
+
+
+          {% endif %}
+
+            </div>
+
+          </div>
+           {% endfor %}
+           <div id="new3">
+           </div>
+
+			</div>
+
+			<div class="postcom mt-2 mr-4">
+				<div class="commentarea">
+					<form class="d-flex" id="myform" method="post" action="/{{offer.pk}}/comment/">
+					<p class="comment_heading3">Comment:</p>
+					<input id="commentin3" type="text" name="comment" class="form-control mt-2">
+					{% csrf_token %}
+
+					<button id="submit3" class="">POST</button>
+					</form>
+				  </div>
+			</div>
+
+
+		</section>
+
+</div>
+
+			<!--<div class="main mt-5">-->
+
+			<!--<section class="details-shop" style="">-->
+
+
+			<!--<div class="disc text-center">-->
+			<!--	<section class="image-shop" style="">-->
+			<!--<img src="{{offer.photo1.url}}" alt="shop_image" style="width: 20rem;height: 20rem;"></section>-->
+			<!--<h3 class="my-4">{{offer.shop_name}}</h3>-->
+			<!--<p>yahan sab milega</p>-->
+			<!--<h2>{{offer_details.text}}</h2>-->
+			<!--<a class="my-2" href="#"><p>link to shop</p></a>-->
+			<!--</div>-->
+
+			<!--</section>-->
+			<!--</div>-->
+			<div class="container mt-5">
+				<div class="row">
+					<div class="owl-carousel owl-theme">
+						{% for offer in list_offer %}
+
+                        {% if offer.ready_post %}
+
+
+						<div class="item">
+							<div class="card">
+
+								<img src="{{offer.index_photo.url}}" alt="offers" class="card-img-top">
+								<div class="card-body text-center">
+									<h3>{{offer.text}}</h3>
+
+									<a href="https://prooffer.pythonanywhere.com/{{offer.id}}"><input type="button" class="btn btn-primary" value="shop details" ></a>
+								</div>
+							</div>
+						</div>
+
+
+
+                        {% endif %}
+                        {% endfor %}
+					</div>
+				</div>
+			</div>
+
+	<script src= "{% static "owl.carousel.min.js" %}" ></script>
+
+	<script>$('.owl-carousel').owlCarousel({
+			loop:true,
+			margin:10,
+			nav:true,
+			responsive:{
+				0:{
+					items:2
+				},
+				600:{
+					items:3
+				},
+				1000:{
+					items:5
+				}
+			}
+		})
+		</script>
+		<script type="text/javascript">
+
+    document.getElementById("like").addEventListener("click",function (event) {
+
+      var pk = {{offer.pk}}
+      event.preventDefault();
+
+
+
+      $.ajax({
+
+        url: '/{{offer.pk}}/like/',
+
+        data: { },
+        dataType: 'json',
+
+        success: function (data) {
+          var data = JSON.parse(data);
+          if (data.action) {
+             document.getElementById('like').style = "color:#139CDD;";
+             document.getElementById('count').innerHTML = data.count;
+
+          }
+          else{
+
+            document.getElementById('like').style = "color:#0C1418;";
+            document.getElementById('count').innerHTML = data.count;
+          }
+        }
+      });
+
+    });
+</script>
+
+		<script>
+function myFunction(x) {
+  x.classList.toggle("fa-thumbs-down");
+}
+</script>
+<script type="text/javascript">
+
+	function delete_comment(e) {
+
+
+      var pk = e.title;
+      var parent = e.parentElement;
+      var p2 = parent.parentElement;
+
+      // alert("got");
+      var token = '{{csrf_token}}';
+
+
+      $.ajax({
+                headers: { "X-CSRFToken": token },
+        url: '/'+pk+'/delete_comment/',
+        type: 'POST',
+        data:{ },
+        dataType: 'json',
+
+        success: function (data) {
+        	  var data1 = JSON.parse(data);
+          if (data1.done) {
+          	p2.parentElement.remove();
+          	// alert("done");
+          	     }
+          else{
+            alert("error");
+          }
+        }
+      });
+
+    };
+
+</script>
+<!-- for desktop comments -->
+<script type="text/javascript">
+
+    document.getElementById("submit").addEventListener("click",function (event) {
+      var comment = document.getElementById('commentin').value;
+      var pk = {{offer.pk}};
+
+      event.preventDefault();
+      var token = '{{csrf_token}}';
+
+
+      $.ajax({
+                headers: { "X-CSRFToken": token },
+        url: '/{{offer.pk}}/comment/',
+        type: 'POST',
+        data: {
+          'comment':comment,
+        },
+        dataType: 'json',
+
+        success: function (data) {
+        	  var data1 = JSON.parse(data);
+          if (data1.done) {
+
+
+          var frag = document.createDocumentFragment();
+          var node_name = document.createElement("h5");
+          node_name.innerHTML = data1.user ;
+          var para_name = document.createElement("div");
+          para_name.className = "profilename";
+          para_name.id = "dp";
+          para_name.appendChild(node_name);
+          frag.appendChild(para_name);
+          var node = document.createElement("p");
+          node.innerHTML = data1.comment;
+          var para = document.createElement("div");
+          para.className = 'commented ml-3';
+          para.id = 'usercom';
+          node.style = 'margin-left: 0.3rem;';
+          var para_2 = document.createElement("div");
+          para_2.className = "comment-box d-flex";
+          var para_high = document.createElement("div");
+          para_high.className = "filler";
+          var h = document.getElementById("new");
+          para.appendChild(node);
+          frag.appendChild(para);
+          var del_icon = document.createElement("i");
+          del_icon.className = "fa fa-trash";
+          del_icon.id = "del";
+          del_icon.title = data1.pk;
+          del_icon.addEventListener('click',function(){delete_comment(this)});
+          var del_para = document.createElement("div");
+          del_para.className = "delcom ml-4 mt-1";
+           del_para.appendChild(del_icon);
+          frag.appendChild(del_para);
+
+
+          para_2.appendChild(frag);
+
+
+          para_high.appendChild(para_2);
+          h.insertAdjacentElement("beforebegin", para_high);
+
+          // alert(data1["comment"]);
+          // <div class="profilename" id="dp" style=""> <h5>{{comment.user}}</h5> </div>
+
+
+
+          }
+          else{
+            // alert(data.message);
+          }
+        }
+      });
+
+    });
+</script>
+<!-- for mobile comments -->
+
+
+<script type="text/javascript">
+
+
+    document.getElementById("submit2").addEventListener("click",function (event) {
+      var comment = document.getElementById('commentin2').value;
+      var pk = {{offer.pk}};
+
+      event.preventDefault();
+      var token = '{{csrf_token}}';
+
+
+      $.ajax({
+                headers: { "X-CSRFToken": token },
+        url: '/{{offer.pk}}/comment/',
+        type: 'POST',
+        data: {
+          'comment':comment,
+        },
+        dataType: 'json',
+
+        success: function (data) {
+        	  var data1 = JSON.parse(data);
+          if (data1.done) {
+
+
+          var frag = document.createDocumentFragment();
+          var node_name = document.createElement("h5");
+          node_name.innerHTML = data1.user ;
+          var para_name = document.createElement("div");
+          para_name.className = "profilename";
+          para_name.id = "dp";
+          para_name.appendChild(node_name);
+          frag.appendChild(para_name);
+          var node = document.createElement("p");
+          node.innerHTML = data1.comment;
+          var para = document.createElement("div");
+          para.className = 'commented ml-3';
+          para.id = 'usercom';
+          node.style = 'margin-left: 0.3rem;';
+          var para_2 = document.createElement("div");
+          para_2.className = "comment-box d-flex";
+          var para_high = document.createElement("div");
+          para_high.className = "";
+          var h = document.getElementById("new2");
+          var h2 = document.getElementById("new3");
+          para.appendChild(node);
+          frag.appendChild(para);
+          var del_icon = document.createElement("i");
+          del_icon.className = "fa fa-trash";
+          del_icon.id = "del";
+          del_icon.title = data1.pk;
+          del_icon.addEventListener('click',function(){delete_comment(this)});
+          var del_para = document.createElement("div");
+          del_para.className = "delcom ml-4 mt-1";
+           del_para.appendChild(del_icon);
+          frag.appendChild(del_para);
+
+
+          para_2.appendChild(frag);
+
+
+          para_high.appendChild(para_2);
+          h.insertAdjacentElement("beforebegin", para_high);
+          var cln = para_high.cloneNode(true);
+          h2.insertAdjacentElement("beforebegin", cln);
+
+          // alert(data1["comment"]);
+          // <div class="profilename" id="dp" style=""> <h5>{{comment.user}}</h5> </div>
+
+
+
+          }
+          else{
+            // alert(data.message);
+          }
+        }
+      });
+
+    });
+</script>
+<script type="text/javascript">
+
+
+    document.getElementById("submit3").addEventListener("click",function (event) {
+      var comment = document.getElementById('commentin3').value;
+      var pk = {{offer.pk}};
+
+      event.preventDefault();
+      var token = '{{csrf_token}}';
+
+
+      $.ajax({
+                headers: { "X-CSRFToken": token },
+        url: '/{{offer.pk}}/comment/',
+        type: 'POST',
+        data: {
+          'comment':comment,
+        },
+        dataType: 'json',
+
+        success: function (data) {
+            var data1 = JSON.parse(data);
+          if (data1.done) {
+
+
+          var frag = document.createDocumentFragment();
+          var node_name = document.createElement("h5");
+          node_name.innerHTML = data1.user ;
+          var para_name = document.createElement("div");
+          para_name.className = "profilename";
+          para_name.id = "dp";
+          para_name.appendChild(node_name);
+          frag.appendChild(para_name);
+          var node = document.createElement("p");
+          node.innerHTML = data1.comment;
+          var para = document.createElement("div");
+          para.className = 'commented ml-3';
+          para.id = 'usercom';
+          node.style = 'margin-left: 0.3rem;';
+          var para_2 = document.createElement("div");
+          para_2.className = "comment-box d-flex";
+          var para_high = document.createElement("div");
+          para_high.className = "";
+          var h = document.getElementById("new2");
+          var h2 = document.getElementById("new3");
+          para.appendChild(node);
+          frag.appendChild(para);
+          var del_icon = document.createElement("i");
+          del_icon.className = "fa fa-trash";
+          del_icon.id = "del";
+          del_icon.title = data1.pk;
+          del_icon.addEventListener('click',function(){delete_comment(this)});
+          var del_para = document.createElement("div");
+          del_para.className = "delcom ml-4 mt-1";
+           del_para.appendChild(del_icon);
+          frag.appendChild(del_para);
+
+
+          para_2.appendChild(frag);
+
+
+          para_high.appendChild(para_2);
+          h.insertAdjacentElement("beforebegin", para_high);
+          var cln = para_high.cloneNode(true);
+          h2.insertAdjacentElement("beforebegin", cln);
+
+          // alert(data1["comment"]);
+          // <div class="profilename" id="dp" style=""> <h5>{{comment.user}}</h5> </div>
+
+
+
+          }
+          else{
+            // alert(data.message);
+          }
+        }
+      });
+
+    });
+</script>
+<script type="text/javascript">
+
+	function delete_mobile_comment(e) {
+
+
+      var pk = e.title;
+      var parent = e.parentElement;
+      var p2 = parent.parentElement;
+
+      // alert("got");
+      var token = '{{csrf_token}}';
+
+
+      $.ajax({
+                headers: { "X-CSRFToken": token },
+        url: '/'+pk+'/delete_comment/',
+        type: 'POST',
+        data:{ },
+        dataType: 'json',
+
+        success: function (data) {
+        	  var data1 = JSON.parse(data);
+          if (data1.done) {
+          	p2.remove();
+          	// alert("done");
+          	     }
+          else{
+            alert("error");
+          }
+        }
+      });
+
+    };
+
+</script>
+
+
+{% endblock %}

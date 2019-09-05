@@ -28,7 +28,7 @@ SECRET_KEY = '*k*+a0+b0+kc*-8&u+akv+x&s-e15hv+vsz1mlv@9@()!7-b7q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['proOffer.pythonanywhere.com']
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'interface',
+    'django_user_agents',
+    'g_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'project_x.urls'
@@ -118,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en_US.UTF-8'
 
 TIME_ZONE = 'UTC'
 
@@ -133,9 +136,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIR =[STATIC_DIR,]
+
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 LOGIN_URL ='/basic_app/user_login'
+
+GOOGLE_RECAPTCHA_SECRET_KEY = '6Lc15ZkUAAAAADGlk6CM8AVkbJSQFDKiVI9ji9UT'
+GOOGLE_RECAPTCHA_SITE_KEY = '6Lc15ZkUAAAAAIjE0b-fNsZydV6XpPWrEYzbEZNM'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'proofferlucknow@gmail.com'
+EMAIL_HOST_PASSWORD = '1githubpasscode'

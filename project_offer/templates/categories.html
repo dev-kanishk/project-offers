@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+<div style="margin-top:2rem; padding:0.5rem;">
+
+
+
+
+<p>{{filter.filters}}</p>
+<div class="row">
+{% for offer in filter.offers.all %}
+<div class="container">
+<!--<div "py-5">-->
+
+
+
+
+
+      {% if offer.ready_post %}
+      <div class="col-md-3 col-6 border offers-item" style="height:18rem;">
+        <img class="offers-ima center-block img-fluid my-3 shadowed" src="{{offer.photo1.url}}" alt="offer" width="300" style=" height:9rem;">
+
+          <h4 class="mb-0">{{offer.offer_tag}}</h4>
+          <p class="mb-0">{{offer.shop_name}}</p>
+          <a href="/{{offer.id}}" class="btn btn-primary stretched-link offers-button" style="">offer details</a>
+
+      </div>
+
+
+
+
+      {% endif %}
+    {% endfor %}
+
+
+
+  </div>
+  <!-- new for some other shops-->
+</div>
+
+
+{% endblock %}
+

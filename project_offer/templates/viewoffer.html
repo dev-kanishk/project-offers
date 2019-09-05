@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+{% for offer in user_posts %}
+<h1>Welcome to offers detail page </h1>
+<p> shop name: {{offer.shop_name}}</p>
+<p> discription: {{offer.text}}</p>
+{% if user.is_authenticated %}
+				<a href="{% url 'delete' pk=offer.pk %}" title="delete" class="btn btn-simple">
+					delete_me
+				</a>
+			
+				<a href="{% url 'edit' pk=offer.pk %}" title="edit" class="btn btn-simple">
+					edit
+				</a>
+			{% endif %}
+{% endfor %}
+{% endblock %}
