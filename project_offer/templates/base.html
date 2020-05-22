@@ -55,20 +55,20 @@
           <li class="nav-item " style=""> <a class="nav-link" href="{%url 'index' %}">home</a> </li>
           <li class="nav-item " style=""> <a class="nav-link" href="{%url 'upload_offer' %}">Post your Offer</a> </li>
           <li class="nav-item dropdown " style="">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:block;">
-          Categories
-          {% load custom_tag %}
-          {% get_all_categories as all_categories %}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        {% for fil in all_categories %}
-          <a class="dropdown-item" href="/categories/{{fil.id}}">{{fil.filters}}</a>
-          <div class="dropdown-divider">
-          </div>
-          {% endfor %}
+        <!--<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:block;">-->
+        <!--  Categories-->
+        <!--  {% load custom_tag %}-->
+        <!--  {% get_all_categories as all_categories %}-->
+        <!--</a>-->
+        <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+        <!--{% for fil in all_categories %}-->
+        <!--  <a class="dropdown-item" href="/categories/{{fil.id}}">{{fil.filters}}</a>-->
+        <!--  <div class="dropdown-divider">-->
+        <!--  </div>-->
+        <!--  {% endfor %}-->
 
 
-        </div>
+        <!--</div>-->
       </li>
         <ul class="navbar-nav" style="">
               {% if user.is_authenticated %}

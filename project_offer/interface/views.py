@@ -249,7 +249,7 @@ def delete_comment(request,pk):
 
 def Upload_Offer(request):
     if not request.user.is_authenticated:
-        return HttpResponse("LOGIN FIRST")
+        return HttpResponse("  <h2 > <a href=\"https://prooffer.pythonanywhere.com/interface/user_login/\">Login please ('-') </a> </h2> <h3> OR </h3><h2 > <a href=\"https://prooffer.pythonanywhere.com/interface/register/\">Sign Up</a> </h2>")
     # verify= UserProfileInfo.objects.raw(is_varifieduser)
     # if not verify:
     #     return HttpResponse("Your registration is still not verified")
